@@ -13,19 +13,7 @@ const Tickets = ({ baseUrl }) => {
     })
 
     useEffect(() => {
-        showTicket()
-    }, [])
-
-    const handShow = (e) => {
-        const { name, value } = e.target
-
-        setTicketData((prastate) => ({
-            ...prastate,
-            [name]: value,
-        }));
-    }
-
-    const showTicket = () => {
+        // showTicket()
         var myHeaders = new Headers();
         myHeaders.append("Cookie", "Cookie_1=value");
 
@@ -41,7 +29,34 @@ const Tickets = ({ baseUrl }) => {
                 setTicket(result)
             })
             .catch(error => console.log('error', error));
+    }, [])
+
+    const handShow = (e) => {
+        const { name, value } = e.target
+
+        setTicketData((prastate) => ({
+            ...prastate,
+            [name]: value,
+        }));
     }
+
+    // const showTicket = () => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Cookie", "Cookie_1=value");
+
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
+
+    //     fetch(baseUrl + "show/admin/Ticket", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setTicket(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
 
     const removeUser = (id) => {
@@ -72,7 +87,7 @@ const Tickets = ({ baseUrl }) => {
                         draggable: true,
                         progress: undefined,
                         });
-                    showTicket()
+                    // showTicket()
                 }
             })
             .catch(error => console.log('error', error));
@@ -129,7 +144,7 @@ const Tickets = ({ baseUrl }) => {
                         });
                     document.getElementById('editDiv').style.display = 'none';
                     document.getElementById('divTable').style.display = 'block';
-                    showTicket()
+                    // showTicket()
                 }
             })
             .catch(error => console.log('error', error));

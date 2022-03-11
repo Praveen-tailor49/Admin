@@ -18,7 +18,22 @@ const TablePayment = ({ baseUrl }) => {
     const [paymentImg, setPaymentImg] = useState('')
 
     useEffect(() => {
-        showPayment();
+        // showPayment();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("http://54.237.197.99:5000/show/admin/Payment", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setPaymentInfo(result)
+            })
+            .catch(error => console.log('error', error));
     }, [])
 
     const HandlShow = (e) => {
@@ -40,24 +55,24 @@ const TablePayment = ({ baseUrl }) => {
     }
 
 
-    const showPayment = () => {
+    // const showPayment = () => {
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
 
-        fetch(baseUrl + "show/admin/Payment", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setPaymentInfo(result)
-            })
-            .catch(error => console.log('error', error));
-    }
+    //     fetch(baseUrl + "show/admin/Payment", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setPaymentInfo(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
     const addPayment = (e) => {
 
@@ -84,7 +99,7 @@ const TablePayment = ({ baseUrl }) => {
             .then(result => {
                 if (result === 'Successfully') {
                     alert('Successfully Add')
-                    showPayment()
+                    // showPayment()
                     document.querySelector("#divTable").style.display = "block";
                     document.querySelector("#show1").style.display = "none";
                 }
@@ -128,7 +143,7 @@ const TablePayment = ({ baseUrl }) => {
             .then(result => {
                 if (result.mess === 'Successfully') {
                     alert('Successfully Remove')
-                    showPayment()
+                    // showPayment()
                 }
             })
             .catch(error => console.log('error', error));
@@ -182,7 +197,7 @@ const TablePayment = ({ baseUrl }) => {
                     alert('Successfully Edit')
                     document.getElementById('editDiv').style.display = 'none';
                     document.getElementById('divTable').style.display = 'block';
-                    showPayment()
+                    // showPayment()
                 }
             })
             .catch(error => console.log('error', error));

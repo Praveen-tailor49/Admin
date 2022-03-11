@@ -9,12 +9,8 @@ function GameRules({ baseUrl }) {
   });
 
 useEffect(() => {
-  showRule()
-},[])
-
-  const showRule = (e) => {
-
-    var myHeaders = new Headers();
+  // showRule()
+  var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var requestOptions = {
@@ -23,7 +19,7 @@ useEffect(() => {
             redirect: 'follow'
         };
 
-        fetch(baseUrl+"showRules", requestOptions)
+        fetch("http://54.237.197.99:5000/showRules", requestOptions)
             .then(response => response.json())
             .then(result => {
               console.log(result)
@@ -36,7 +32,33 @@ useEffect(() => {
                 )
             })
             .catch(error => console.log('error', error));
-        }
+},[])
+
+  // const showRule = (e) => {
+
+  //   var myHeaders = new Headers();
+  //       myHeaders.append("Content-Type", "application/json");
+
+  //       var requestOptions = {
+  //           method: 'GET',
+  //           headers: myHeaders,
+  //           redirect: 'follow'
+  //       };
+
+  //       fetch(baseUrl+"showRules", requestOptions)
+  //           .then(response => response.json())
+  //           .then(result => {
+  //             console.log(result)
+  //             setrules(
+  //                   {
+  //                     rules: result[0].rules,
+  //                       Id: result[0].Id
+
+  //                   }
+  //               )
+  //           })
+  //           .catch(error => console.log('error', error));
+  //       }
     const updateRule = (e) => {
 
         e.preventDefault()

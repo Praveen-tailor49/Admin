@@ -15,7 +15,22 @@ const TablePromo = ({baseUrl}) => {
 
     useEffect(() => {
 
-        showpromo();
+        // showpromo();
+        var myHeaders = new Headers();
+        myHeaders.append("Cookie", "Cookie_1=value");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("http://54.237.197.99:5000/show/admin/Promo", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setpromo(result)
+            })
+            .catch(error => console.log('error', error));
 
     }, [])
 
@@ -45,23 +60,23 @@ const TablePromo = ({baseUrl}) => {
             [name]: value,
         }));
     }
-    const showpromo = async () => {
-        var myHeaders = new Headers();
-        myHeaders.append("Cookie", "Cookie_1=value");
+    // const showpromo = async () => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Cookie", "Cookie_1=value");
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
 
-        fetch(baseUrl+"show/admin/Promo", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setpromo(result)
-            })
-            .catch(error => console.log('error', error));
-    }
+    //     fetch(baseUrl+"show/admin/Promo", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setpromo(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
     const addPromo = (e) => {
         e.preventDefault()
@@ -96,7 +111,7 @@ const TablePromo = ({baseUrl}) => {
                         progress: undefined,
                         });
                     hidePromo()
-                    showpromo()
+                    // showpromo()
                 }
             })
             .catch(error => console.log('error', error));
@@ -150,7 +165,7 @@ const TablePromo = ({baseUrl}) => {
                         });
                     document.getElementById('editDiv').style.display = 'none';
                     document.getElementById('promoTable').style.display = 'block';
-                    showpromo()
+                    // showpromo()
                 }
             })
             .catch(error => console.log('error', error));
@@ -184,7 +199,7 @@ const TablePromo = ({baseUrl}) => {
                         draggable: true,
                         progress: undefined,
                         });
-                    showpromo()
+                    // showpromo()
                 }
             })
             .catch(error => console.log('error', error));

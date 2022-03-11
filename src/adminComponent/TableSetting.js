@@ -12,7 +12,22 @@ const TableSetting = ({baseUrl}) => {
 
     useEffect(() => {
 
-        showsettings();
+        // showsettings();
+        var myHeaders = new Headers();
+        myHeaders.append("Cookie", "Cookie_1=value");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("http://54.237.197.99:5000/show/admin/setting", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setsettings(result)
+            })
+            .catch(error => console.log('error', error));
 
     }, [])
 
@@ -34,23 +49,23 @@ const TableSetting = ({baseUrl}) => {
         }));
     }
 
-    const showsettings = async () => {
-        var myHeaders = new Headers();
-        myHeaders.append("Cookie", "Cookie_1=value");
+    // const showsettings = async () => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Cookie", "Cookie_1=value");
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
 
-        fetch(baseUrl+"show/admin/setting", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setsettings(result)
-            })
-            .catch(error => console.log('error', error));
-    }
+    //     fetch(baseUrl+"show/admin/setting", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setsettings(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
     const addSetting = (e) => {
         e.preventDefault()
@@ -122,7 +137,7 @@ const TableSetting = ({baseUrl}) => {
                     alert('Successfully edit')
                     document.getElementById('editDiv').style.display = 'none';
                     document.getElementById('settingTable').style.display = 'block';
-                    showsettings()
+                    // showsettings()
                 } else {
                 console.log(result)
                 }
@@ -150,7 +165,7 @@ const TableSetting = ({baseUrl}) => {
             .then(result => {
                 if (result.mess === 'Successfully') {
                     alert('Successfully Remove')
-                    showsettings()
+                    // showsettings()
                 }
             })
             .catch(error => console.log('error', error));

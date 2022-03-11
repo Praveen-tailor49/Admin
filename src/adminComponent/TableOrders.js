@@ -5,27 +5,42 @@ const TableOrders = ({baseUrl}) => {
     const [order, setorder] = useState([])
 
     useEffect(() => {
-        showOrder();
+        // showOrder();
+        var myHeaders = new Headers();
+        myHeaders.append("Cookie", "Cookie_1=value");
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          redirect: 'follow'
+        };
+        
+        fetch("http://54.237.197.99:5000/showOrder", requestOptions)
+          .then(response => response.json())
+          .then(result => {
+            setorder(result)
+          })
+          .catch(error => console.log('error', error));
     
       },[])
     
-      const showOrder = async () => {
-        var myHeaders = new Headers();
-myHeaders.append("Cookie", "Cookie_1=value");
+//       const showOrder = async () => {
+//         var myHeaders = new Headers();
+// myHeaders.append("Cookie", "Cookie_1=value");
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+// var requestOptions = {
+//   method: 'POST',
+//   headers: myHeaders,
+//   redirect: 'follow'
+// };
 
-fetch(baseUrl+"showOrder", requestOptions)
-  .then(response => response.json())
-  .then(result => {
-    setorder(result)
-  })
-  .catch(error => console.log('error', error));
-      }
+// fetch(baseUrl+"showOrder", requestOptions)
+//   .then(response => response.json())
+//   .then(result => {
+//     setorder(result)
+//   })
+//   .catch(error => console.log('error', error));
+//       }
 
       const removeOrder = (Id) => {
       var myHeaders = new Headers();
@@ -43,10 +58,10 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:5000/remove/admin/order", requestOptions)
+fetch("http://54.237.197.99:5000/remove/admin/order", requestOptions)
   .then(response => response.json())
   .then(result => {
-    showOrder()
+    // showOrder()
   })
   .catch(error => console.log('error', error));
 

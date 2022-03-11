@@ -25,7 +25,7 @@ import {Routes, Route} from 'react-router-dom'
 // import Home from './pages/Home';
 import AdminPage from './pages/AdminPage';
 import UserManagement from './adminPages/UserManagement';
-import Pages from './adminPages/Pages';
+// import Pages from './adminPages/Pages';
 // import WinTwo from './pages/WinTwo';
 // import Payment from './pages/Payment';
 // import Error404 from './pages/Error404';
@@ -111,7 +111,7 @@ function App() {
           <Route path='/' element={<LoginAdmin baseUrl={baseUrl}/>}/>
           <Route path='/admin' element={<AdminPage baseUrl={baseUrl}/>}/>
           <Route path='/user/management' element={<UserManagement baseUrl={baseUrl} />}/>
-          <Route path='/user/pages' element={<Pages baseUrl={baseUrl}/>}/>
+          {/* <Route path='/user/pages' element={<Pages baseUrl={baseUrl}/>}/> */}
           <Route path='/Promotions' element={<Promotions baseUrl={baseUrl}/>}/>
           <Route path='/Order' element={<Order baseUrl={baseUrl}/>}/>
           <Route path='/GameResult' element={<GameResult baseUrl={baseUrl}/>}/>

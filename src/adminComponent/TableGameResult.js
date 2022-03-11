@@ -37,11 +37,7 @@ const TableGameResult = ({ baseUrl }) => {
 
     useEffect(() => {
 
-        showResult();
-
-    }, [])
-
-    const showResult = () => {
+        // showResult();
         var myHeaders = new Headers();
         myHeaders.append("Cookie", "Cookie_1=value");
 
@@ -51,13 +47,32 @@ const TableGameResult = ({ baseUrl }) => {
             redirect: 'follow'
         };
 
-        fetch(baseUrl+"showResult", requestOptions)
+        fetch("http://54.237.197.99:5000/showResult", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setresult(result)
             })
             .catch(error => console.log('error', error));
-    }
+
+    }, [])
+
+    // const showResult = () => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Cookie", "Cookie_1=value");
+
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
+
+    //     fetch(baseUrl+"showResult", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setresult(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
     const updatedata = (e) => {
         e.preventDefault()
@@ -94,7 +109,7 @@ const TableGameResult = ({ baseUrl }) => {
                         });
                     document.getElementById('edit').style.display = 'none';
                     document.getElementById('table').style.display = 'block';
-                    showResult()
+                    // showResult()
                 }
             })
             .catch(error => console.log('error', error));
@@ -130,7 +145,7 @@ const TableGameResult = ({ baseUrl }) => {
                         draggable: true,
                         progress: undefined,
                         });
-                    showResult()
+                    // showResult()
                 }
             })
             .catch(error => console.log('error', error));
