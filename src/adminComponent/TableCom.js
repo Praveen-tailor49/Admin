@@ -23,27 +23,44 @@ const TableCom = ({baseUrl}) => {
 
     useEffect(() => {
 
-        showUser();
+        // showUser();
+        // const showUser = async () => {
+            var myHeaders = new Headers();
+            myHeaders.append("Cookie", "Cookie_1=value");
+    
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+    
+            fetch("http://54.237.197.99:5000/showUser", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    setuser(result)
+                })
+                .catch(error => console.log('error', error));
+        // }
 
     }, [])
 
-    const showUser = async () => {
-        var myHeaders = new Headers();
-        myHeaders.append("Cookie", "Cookie_1=value");
+    // const showUser = async () => {
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Cookie", "Cookie_1=value");
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    //     var requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow'
+    //     };
 
-        fetch(baseUrl+"showUser", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setuser(result)
-            })
-            .catch(error => console.log('error', error));
-    }
+    //     fetch(baseUrl+"showUser", requestOptions)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             setuser(result)
+    //         })
+    //         .catch(error => console.log('error', error));
+    // }
 
 
     const editUser = (val, rowData) => {
@@ -100,7 +117,7 @@ const TableCom = ({baseUrl}) => {
                         });
                     document.getElementById('editDiv').style.display = 'none';
                     document.getElementById('divTable').style.display = 'block';
-                    showUser()
+                    // showUser()
                 }
             })
             .catch(error => console.log('error', error));
@@ -156,7 +173,7 @@ const TableCom = ({baseUrl}) => {
                         });
                     document.querySelector("#divTable").style.display = "block";
                     document.querySelector("#show1").style.display = "none";
-                    showUser()
+                    // showUser()
                 }
             })
             .catch((error) => console.log("error", error));
@@ -203,7 +220,7 @@ const TableCom = ({baseUrl}) => {
                         draggable: true,
                         progress: undefined,
                         });
-                    showUser()
+                    // showUser()
                 }
             })
             .catch(error => console.log('error', error));
