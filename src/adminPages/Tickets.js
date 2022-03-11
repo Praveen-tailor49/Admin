@@ -23,7 +23,7 @@ const Tickets = ({ baseUrl }) => {
             redirect: 'follow'
         };
 
-        fetch(baseUrl + "show/admin/Ticket", requestOptions)
+        fetch("http://54.237.197.99:5000/show/admin/Ticket", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setTicket(result)
